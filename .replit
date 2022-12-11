@@ -1,4 +1,4 @@
-entrypoint = "code/day1/index.js"
+entrypoint = "code/day2/index.js"
 
 hidden = [".config"]
 
