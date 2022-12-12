@@ -1,44 +1,71 @@
-function calculateScore(inputString) {
+function calculateScore(inputString, part) {
   const diffrentGames = inputString.split(`\n`)
   let myScore = 0
-
-  let shouldIWin = 0
 
   // A and X are Rock (1)
   // B and Y are paper (2)
   // C and Z are scissors (3)
   // 6 for winning, 3 for tie and 0 for loss
   
-  for (let i = 0; i < diffrentGames.length; i++) {
-    if (shouldIWin == 0) {
-      if (diffrentGames[i][0] == "A") {
+  for (let i = 0; i < diffrentGames.length; i++) {   
+    
+    if (part == 1) {
+      // wins  
+      if (diffrentGames[i][0] == "A" && diffrentGames[i][2] == "Y") {
         myScore += 8
-      } else if (diffrentGames[i][0] == "B") {
+      } else if (diffrentGames[i][0] == "B" && diffrentGames[i][2] == "Z") {
         myScore += 9
-      } else {
+      } else if (diffrentGames[i][0] == "C" && diffrentGames[i][2] == "X") {
         myScore += 7
       }
-      shouldIWin = 1
-    } else if (shouldIWin == 1) {
-      if (diffrentGames[i][0] == "A") {
-        myScore += 3
-      } else if (diffrentGames[i][0] == "B") {
-        myScore += 1
-      } else {
-        myScore += 2
-      }
-      shouldIWin = 2
-    } else if (shouldIWin == 2) {
-      if (diffrentGames[i][0] == "A") {
+      // draws
+      else if (diffrentGames[i][0] == "A" && diffrentGames[i][2] == "X") {
         myScore += 4
-      } else if (diffrentGames[i][0] == "B") {
+      } else if (diffrentGames[i][0] == "B" && diffrentGames[i][2] == "Y") {
         myScore += 5
-      } else {
+      } else if (diffrentGames[i][0] == "C" && diffrentGames[i][2] == "Z") {
         myScore += 6
       }
-      shouldIWin = 0
+      // losses
+      else if (diffrentGames[i][0] == "A" && diffrentGames[i][2] == "Z") {
+        myScore += 3
+      } else if (diffrentGames[i][0] == "B" && diffrentGames[i][2] == "X") {
+        myScore += 1
+      } else if (diffrentGames[i][0] == "C" && diffrentGames[i][2] == "Y") {
+        myScore += 2
+      }
+    } else if (part == 2) {
+      // draw
+      if (diffrentGames[i][2] == "Y") {
+        if (diffrentGames[i][0] == "A") {
+          myScore += 4
+        } else if (diffrentGames[i][0] == "B") {
+          myScore += 5
+        } else if (diffrentGames[i][0] == "C") {
+          myScore += 6
+        }
+        // win
+      } else if (diffrentGames[i][2] == "Z") {
+        if (diffrentGames[i][0] == "A") {
+          myScore += 8
+        } else if (diffrentGames[i][0] == "B") {
+          myScore += 9
+        } else if (diffrentGames[i][0] == "C") {
+          myScore += 7
+        }
+        // loss
+      } else if (diffrentGames[i][2] == "X") {
+        if (diffrentGames[i][0] == "A") {
+          myScore += 3
+        } else if (diffrentGames[i][0] == "B") {
+          myScore += 1
+        } else if (diffrentGames[i][0] == "C") {
+          myScore += 2
+        }
+      }
     }
   }
+
   console.log(myScore)
   return myScore
 }
@@ -2546,4 +2573,4 @@ B Y
 A Z
 `
 
-calculateScore(input)
+calculateScore(input, 2)
